@@ -50,18 +50,18 @@ by \eqn{X}.
 \examples{
 # Classic front-door: X -> M -> Y with unobserved confounder X <-> Y
 g <- dagitty("dag{ X -> M -> Y ; X <-> Y }")
-frontdoorSets( g, "X", "Y" )
+frontDoorSets( g, "X", "Y" )
 
 # See which candidates were considered and why
-frontdoorSets( g, "X", "Y", verbose=TRUE )
+frontDoorSets( g, "X", "Y", verbose=TRUE )
 
 # No front-door when there is a direct edge X -> Y
 g2 <- dagitty("dag{ X -> M -> Y ; X -> Y ; X <-> Y }")
-frontdoorSets( g2, "X", "Y" )
+frontDoorSets( g2, "X", "Y" )
 
 # Restrict: M1 must be included, only M1 and M2 are measurable
 g3 <- dagitty("dag{ X -> M1 -> M2 -> Y ; X <-> Y }")
-frontdoorSets( g3, "X", "Y", I=c("M1"), R=c("M1","M2") )
+frontDoorSets( g3, "X", "Y", I=c("M1"), R=c("M1","M2") )
 
 }
 \references{

@@ -1397,14 +1397,14 @@ impliedConditionalIndependencies <- function( x, type="missing.edge", max.result
 #'   the exposure variable is extracted from the graph.
 #' @param outcome name of the outcome variable. If not given (default),
 #'   the outcome variable is extracted from the graph.
-#' @param verbose logical. If \code{TRUE}, prints diagnostic messages showing
-#'   which candidate sets were considered, which criteria they passed or failed,
-#'   and which sets are valid. Defaults to \code{FALSE}.
 #' @param I character vector of variable names that must be included in every
 #'   valid front-door set. Defaults to \code{NULL} (no inclusion constraint).
 #' @param R character vector of variable names that are allowed in a front-door
 #'   set. Any candidate containing a variable not in \code{R} is discarded.
 #'   Defaults to \code{NULL} (no restriction).
+#' @param verbose logical. If \code{TRUE}, prints diagnostic messages showing
+#'   which candidate sets were considered, which criteria they passed or failed,
+#'   and which sets are valid. Defaults to \code{FALSE}.
 #'
 #' @return a list of character vectors, each representing a valid front-door
 #'   mediator set, with class \code{dagitty.sets}. Returns an empty list
@@ -1433,18 +1433,18 @@ impliedConditionalIndependencies <- function( x, type="missing.edge", max.result
 #' @examples
 #' # Classic front-door: X -> M -> Y with unobserved confounder X <-> Y
 #' g <- dagitty("dag{ X -> M -> Y ; X <-> Y }")
-#' frontdoorSets( g, "X", "Y" )
+#' frontDoorSets( g, "X", "Y" )
 #'
 #' # See which candidates were considered and why
-#' frontdoorSets( g, "X", "Y", verbose=TRUE )
+#' frontDoorSets( g, "X", "Y", verbose=TRUE )
 #'
 #' # No front-door when there is a direct edge X -> Y
 #' g2 <- dagitty("dag{ X -> M -> Y ; X -> Y ; X <-> Y }")
-#' frontdoorSets( g2, "X", "Y" )
+#' frontDoorSets( g2, "X", "Y" )
 #'
 #' # Restrict: M1 must be included, only M1 and M2 are measurable
 #' g3 <- dagitty("dag{ X -> M1 -> M2 -> Y ; X <-> Y }")
-#' frontdoorSets( g3, "X", "Y", I=c("M1"), R=c("M1","M2") )
+#' frontDoorSets( g3, "X", "Y", I=c("M1"), R=c("M1","M2") )
 #'
 #' @export
 frontDoorSets <- function( x, exposure=NULL, outcome=NULL, I=NULL, R=NULL, verbose=FALSE ){
